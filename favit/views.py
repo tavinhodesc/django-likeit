@@ -2,7 +2,8 @@ from django.http import HttpResponse
 from django.db.models import get_model
 from django.utils import simplejson
 from django.contrib.contenttypes.models import ContentType
-from favorite.models import Favorite
+
+from .models import Favorite
 
 
 def add_or_remove(request):
