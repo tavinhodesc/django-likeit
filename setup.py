@@ -6,16 +6,16 @@ from setuptools import setup, find_packages
 README = open('README.md').readlines()
 
 setup(
-    name='django-favorite',
+    name='django-favit',
     version='0.0.1',
     packages=find_packages(),
     include_package_data=True,
     license='MIT License',
     description=README[2].rstrip('\n'),
     long_description=''.join(README),
-    url='https://github.com/s1n4/django-favorite',
-    author='Sina Samavati',
-    author_email='sina.samv@gmail.com',
+    url='https://github.com/streema/django-favit',
+    author='Streema Team',
+    author_email='devel@streema.com',
     classifiers=[
         'Environment :: Web Environment',
         'Framework :: Django',

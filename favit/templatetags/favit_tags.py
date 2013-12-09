@@ -1,10 +1,12 @@
 from django import template
 from django.template.loader import render_to_string
 from django.contrib.contenttypes.models import ContentType
-from favorite.models import Favorite
+
+from .models import Favorite
 
 
 register = template.Library()
+
 
 @register.simple_tag(takes_context=True)
 def favorite_button(context, target):
