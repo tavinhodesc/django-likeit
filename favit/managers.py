@@ -116,20 +116,17 @@ class FavoriteManager(models.Manager):
         except self.model.DoesNotExist:
             return None
 
-    @classmethod
-    def create(cls, user, obj, model=None):
+    def create(self, user, obj, model=None):
         """
         Creates and returns a new Favorite obj for the given user and obj
         """
 
-        content_type, obj = _get_content_type_and_obj(obj, model)
-
-        fav = Favorite(
+        content_type, content_object = _get_content_type_and_obj(obj, model)
+        fav = super(FavoriteManager, self).create(
             user=user,
             target_content_type=content_type,
             target_object_id=content_object.pk,
             target=content_object
-            )
-        fav.save()
+        )
 
         return fav

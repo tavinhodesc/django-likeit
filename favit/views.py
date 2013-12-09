@@ -16,8 +16,8 @@ def add_or_remove(request):
 
     try:
         app_model = request.POST["target_model"]
-        obj_id = request.POST["target_object_id"]
-    except KeyError:
+        obj_id = int(request.POST["target_object_id"])
+    except (KeyError, ValueError):
         return HttpResponseBadRequest()
 
     fav = Favorite.objects.get_favorite(user, obj_id, model=app_model)
