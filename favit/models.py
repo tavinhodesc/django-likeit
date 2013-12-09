@@ -4,6 +4,8 @@ from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
+from .managers import FavoriteManager
+
 
 class Favorite(models.Model):
     """
@@ -14,6 +16,8 @@ class Favorite(models.Model):
     target_object_id = models.PositiveIntegerField()
     target = generic.GenericForeignKey('target_content_type', 'target_object_id')
     timestamp = models.DateTimeField(auto_now_add=True, db_index=True)
+
+    objects = FavoriteManager()
 
     class Meta:
         ordering = ["-timestamp"]
