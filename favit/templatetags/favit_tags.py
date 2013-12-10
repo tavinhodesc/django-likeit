@@ -83,7 +83,7 @@ def user_favorites(user, app_model=None):
         {% endwith %}
     """
 
-    return Favorite.objects.for_user(user, model)
+    return Favorite.objects.for_user(user, app_model)
 
 
 @register.assignment_tag
@@ -101,4 +101,4 @@ def model_favorites(app_model):
         {% endwith %}
     """
 
-    return Favorite.objects.for_model(model)
+    return Favorite.objects.for_model(app_model)
