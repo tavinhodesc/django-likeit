@@ -26,7 +26,7 @@ def favorite_button(context, target):
         undo = True
 
     return render_to_string(
-        'favorite/button.html', {
+        'favit/button.html', {
             'target_model': target_model,
             'target_object_id': target.id,
             'undo': undo
