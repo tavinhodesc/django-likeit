@@ -110,6 +110,7 @@ class FavoriteManager(models.Manager):
 
         try:
             return self.get_query_set().get(
+                user=user,
                 target_content_type=content_type,
                 target_object_id=obj.id
             )
