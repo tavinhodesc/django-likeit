@@ -12,7 +12,7 @@ class Favorite(models.Model):
     """
     """
 
-    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    user = models.ForeignKey(getattr(settings, 'AUTH_USER_MODEL', 'auth.User'))
     target_content_type = models.ForeignKey(ContentType)
     target_object_id = models.PositiveIntegerField()
     target = generic.GenericForeignKey('target_content_type', 'target_object_id')
