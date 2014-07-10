@@ -37,6 +37,9 @@ urlpatterns = patterns('',
 python manage.py syncdb
 ```
 
+* Make sure you have jQuery ajax CSRF configuration right
+
+See https://docs.djangoproject.com/en/1.7/ref/contrib/csrf/#ajax
 
 ## Usage:
 
