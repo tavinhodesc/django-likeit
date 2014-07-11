@@ -29,7 +29,29 @@ def favorite_button(context, target):
         'favit/button.html', {
             'target_model': target_model,
             'target_object_id': target.id,
-            'undo': undo
+            'undo': undo,
+            'fav_count': Favorite.objects.for_object(target).count()
+        }
+    )
+
+
+@register.simple_tag(takes_context=True)
+def unfave_button(context, target):
+    user = context['request'].user
+
+    # do nothing when user isn't authenticated
+    if not user.is_authenticated():
+        return ''
+
+    if Favorite.objects.get_favorite(user, target) is None:
+        return ''
+
+    target_model = '.'.join((target._meta.app_label, target._meta.object_name))
+
+    return render_to_string(
+        'favit/unfave-button.html', {
+            'target_model': target_model,
+            'target_object_id': target.id,
         }
     )
 
