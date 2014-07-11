@@ -38,3 +38,30 @@ def add_or_remove(request):
         simplejson.dumps(response, ensure_ascii=False),
         mimetype='application/json'
     )
+
+
+@login_required
+def remove(request):
+
+    if not request.is_ajax():
+        return HttpResponseNotAllowed()
+
+    user = request.user
+
+    try:
+        app_model = request.POST["target_model"]
+        obj_id = int(request.POST["target_object_id"])
+    except (KeyError, ValueError):
+        return HttpResponseBadRequest()
+
+    Favorite.objects.get_favorite(user, obj_id, model=app_model).delete()
+    status = 'deleted'
+
+    response = {
+        'status': status,
+    }
+
+    return HttpResponse(
+        simplejson.dumps(response, ensure_ascii=False),
+        mimetype='application/json'
+    )

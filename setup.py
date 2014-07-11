@@ -7,7 +7,7 @@ README = open('README.md').readlines()
 
 setup(
     name='django-favit',
-    version='0.2.1',
+    version='0.2.3',
     packages=find_packages(),
     include_package_data=True,
     license='MIT License',
