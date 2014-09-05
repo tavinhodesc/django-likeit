@@ -67,7 +67,7 @@ def get_favorite_for(obj, user):
     {% endwith %}
     """
 
-    return Favorites.objects.get_favorite(user, obj)
+    return Favorite.objects.get_favorite(user, obj)
 
 
 @register.filter
