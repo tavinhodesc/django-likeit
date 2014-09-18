@@ -10,10 +10,10 @@ $(document).ready(function() {
              target_object_id: target_id},
       success: function(response) {
           if (response.status == 'added') {
-            $(".fa.galp").removeClass('fa-heart-o').addClass('fa-heart');
+            $(".favorite-" + target_id).removeClass('fa-heart-o').addClass('fa-heart');
           }
           else {
-            $(".fa.galp").removeClass('fa-heart').addClass('fa-heart-o');
+            $(".favorite-" + target_id).removeClass('fa-heart').addClass('fa-heart-o');
           }
           $obj.parent('.favit').children('.fav-count').text(response.fav_count);
           $obj.prop('disabled', false);
