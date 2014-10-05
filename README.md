@@ -49,11 +49,10 @@ See https://docs.djangoproject.com/en/1.7/ref/contrib/csrf/#ajax
 * Get the favorited objects for a given user:
 
 ```python
-{% with user_favorites <user> "app_label.model" as favorite_list %}
-    {% for fav_obj in favorite_list %}
-        {# do something with fav_obj #}
-    {% endfor %}
-{% endwith %}
+{% user_favorites <user> "app_label.model" as favorite_list %}
+{% for fav_obj in favorite_list %}
+    {# do something with fav_obj #}
+{% endfor %}
 ```
 
 
