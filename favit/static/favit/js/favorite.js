@@ -15,7 +15,7 @@ $(document).ready(function() {
           else {
             $(".favorite-" + target_id).removeClass('fa-heart').addClass('fa-heart-o');
           }
-          $obj.parent('.favit').children('.fav-count').text(response.fav_count);
+          $(".fav-count-" + target_id).load("  .fav-count-" + target_id);
           $obj.prop('disabled', false);
       }
       });
