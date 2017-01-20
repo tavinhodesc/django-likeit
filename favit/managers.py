@@ -1,14 +1,13 @@
-# -*- coding: utf-8 -*-
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
-from django.db.models import get_model
+from django.apps import apps
 
 
 def _get_content_type_and_obj(obj, model=None):
-    if isinstance(model, basestring):
-        model = get_model(*model.split("."))
+    if isinstance(model, str):
+        model = apps.get_model(*model.split("."))
 
-    if isinstance(obj, (int, long)):
+    if isinstance(obj, (int, int)):
         obj = model.objects.get(pk=obj)
 
     return ContentType.objects.get_for_model(type(obj)), obj
@@ -18,6 +17,10 @@ class FavoriteManager(models.Manager):
     """
     A Manager for Favorite objects
     """
+    from django import VERSION
+    if VERSION > (1,8):
+        def get_query_set(self):
+            return self.get_queryset()
 
     def for_user(self, user, model=None):
         """
@@ -36,8 +39,8 @@ class FavoriteManager(models.Manager):
         qs = self.get_query_set().filter(user=user)
 
         if model:
-            if isinstance(model, basestring):
-                model = get_model(*model.split("."))
+            if isinstance(model, str):
+                model = apps.get_model(*model.split("."))
 
             content_type = ContentType.objects.get_for_model(model)
             qs = qs.filter(target_content_type=content_type)
@@ -57,8 +60,8 @@ class FavoriteManager(models.Manager):
         """
 
         # if model is an app_label.model string make it a Model class
-        if isinstance(model, basestring):
-            model = get_model(*model.split("."))
+        if isinstance(model, str):
+            model = apps.get_model(*model.split("."))
 
         content_type = ContentType.objects.get_for_model(model)
 

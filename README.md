@@ -24,11 +24,11 @@ INSTALLED_APPS = [
 * Add favit urls to your project's `urls.py` file:
 
 ```python
-urlpatterns = patterns('',
+urlpatterns = [
   ...
   (r'^favit/', include('favit.urls')),
   ...
-)
+]
 ```
 
 * Sync your database:
@@ -39,7 +39,7 @@ python manage.py syncdb
 
 * Make sure you have jQuery ajax CSRF configuration right
 
-See https://docs.djangoproject.com/en/1.7/ref/contrib/csrf/#ajax
+See https://docs.djangoproject.com/en/1.10/ref/csrf/
 
 ## Usage:
 
