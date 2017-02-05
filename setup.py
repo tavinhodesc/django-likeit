@@ -2,20 +2,19 @@
 
 from setuptools import setup, find_packages
 
-
 README = open('README.md').readlines()
 
 setup(
-    name='django-favit',
-    version='0.2.3',
+    name='django-likeit',
+    version='0.1.0',
     packages=find_packages(),
     include_package_data=True,
     license='MIT License',
     description=README[2].rstrip('\n'),
     long_description=''.join(README),
-    url='https://github.com/streema/django-favit',
-    author='Streema Team',
-    author_email='devel@streema.com',
+    url='https://github.com/malisit/django-likeit',
+    author='Muhammed Ali Sit',
+    author_email='sitmuhammedali@gmail.com',
     classifiers=[
         'Environment :: Web Environment',
         'Framework :: Django',
@@ -23,8 +22,8 @@ setup(
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 2.6',
-        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
         'Topic :: Internet :: WWW/HTTP',
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
         ],

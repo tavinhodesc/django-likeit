@@ -13,9 +13,9 @@ def _get_content_type_and_obj(obj, model=None):
     return ContentType.objects.get_for_model(type(obj)), obj
 
 
-class FavoriteManager(models.Manager):
+class LikeManager(models.Manager):
     """
-    A Manager for Favorite objects
+    A Manager for Like objects
     """
     from django import VERSION
     if VERSION > (1,8):
@@ -24,16 +24,16 @@ class FavoriteManager(models.Manager):
 
     def for_user(self, user, model=None):
         """
-        Returns a Favorite objects queryset for a given user.
+        Returns a Like objects queryset for a given user.
 
         If a model params is provided, it returns only the
-        favorited objects of that model class
+        liked objects of that model class
 
         Usage:
 
-            Favorite.objects.for_user(user)
-            Favorite.objects.for_user(user, model=Song)
-            Favorite.objects.for_user(user, model="music.song")
+            Like.objects.for_user(user)
+            Like.objects.for_user(user, model=Song)
+            Like.objects.for_user(user, model="music.song")
         """
 
         qs = self.get_query_set().filter(user=user)
@@ -49,14 +49,14 @@ class FavoriteManager(models.Manager):
 
     def for_model(self, model):
         """
-        Returns a Favorite objects queryset for a given model.
+        Returns a Like objects queryset for a given model.
         `model` may be a django model class or an string representing
         a model in module-notation, ie: "auth.User"
 
         Usage:
 
-            Favorite.objects.for_model(Song)
-            Favorite.objects.for_model("music.Song")
+            Like.objects.for_model(Song)
+            Like.objects.for_model("music.Song")
         """
 
         # if model is an app_label.model string make it a Model class
@@ -73,16 +73,16 @@ class FavoriteManager(models.Manager):
 
     def for_object(self, obj, model=None):
         """
-        Returns a Favorite objects queryset for a given object
+        Returns a Like objects queryset for a given object
 
         Usage:
-            Favorite.objects.for_object(1, "music.Song")
-            Favorite.objects.for_object(1, Song)
+            Like.objects.for_object(1, "music.Song")
+            Like.objects.for_object(1, Song)
 
         or given a music app with a Song model:
 
             song = Song.objects.get(pk=1)
-            Favorite.objects.for_object(song)
+            Like.objects.for_object(song)
         """
 
         content_type, obj = _get_content_type_and_obj(obj, model)
@@ -94,19 +94,19 @@ class FavoriteManager(models.Manager):
 
         return qs.order_by("-timestamp")
 
-    def get_favorite(self, user, obj, model=None):
+    def get_like(self, user, obj, model=None):
         """
-        Returns a Favorite instance if the `user` has favorited
+        Returns a Like instance if the `user` has liked
         the given object `obj`. Otherwise returns None
 
         Usage:
-            Favorite.objects.get_favorite(user, 1, "music.Song")
-            Favorite.objects.get_favorite(user, 1, Song)
+            Like.objects.get_like(user, 1, "music.Song")
+            Like.objects.get_like(user, 1, Song)
 
         or given a music app with a Song model:
 
             song = Song.objects.get(pk=1)
-            Favorite.objects.get_favorite(user, song)
+            Like.objects.get_like(user, song)
         """
 
         content_type, obj = _get_content_type_and_obj(obj, model)
@@ -122,15 +122,15 @@ class FavoriteManager(models.Manager):
 
     def create(self, user, obj, model=None):
         """
-        Creates and returns a new Favorite obj for the given user and obj
+        Creates and returns a new Like obj for the given user and obj
         """
 
         content_type, content_object = _get_content_type_and_obj(obj, model)
-        fav = super(FavoriteManager, self).create(
+        like = super(LikeManager, self).create(
             user=user,
             target_content_type=content_type,
             target_object_id=content_object.pk,
             target=content_object
         )
 
-        return fav
+        return like

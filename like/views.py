@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseNotAllowed, HttpResponseBadRequest
 
-from .models import Favorite
+from .models import Like
 
 
 @login_required
@@ -18,16 +18,16 @@ def add_or_remove(request):
     except (KeyError, ValueError):
         return HttpResponseBadRequest()
 
-    fav = Favorite.objects.get_favorite(user, obj_id, model=app_model)
+    like = Like.objects.get_like(user, obj_id, model=app_model)
 
-    if fav is None:
-        Favorite.objects.create(user, obj_id, app_model)
+    if like is None:
+        Like.objects.create(user, obj_id, app_model)
         status = 'added'
     else:
-        fav.delete()
+        like.delete()
         status = 'deleted'
 
-    favc=Favorite.objects.for_object(obj_id, app_model).count()
+    likeCount=Like.objects.for_object(obj_id, app_model).count()
     
-    return HttpResponse(status+"|"+str(favc))
+    return HttpResponse(status+"|"+str(likeCount))
 
