@@ -33,26 +33,6 @@ def like_button(context, target):
     )
 
 
-@register.simple_tag(takes_context=True)
-def unlike_button(context, target):
-    user = context['request'].user
-
-    # do nothing when user isn't authenticated
-    if not user.is_authenticated():
-        return ''
-
-    if Like.objects.get_like(user, target) is None:
-        return ''
-
-    target_model = '.'.join((target._meta.app_label, target._meta.object_name))
-
-    return render_to_string(
-        'like/unlike-button.html', {
-            'target_model': target_model,
-            'target_object_id': target.id,
-        }
-    )
-
 
 @register.filter
 def get_like_for(obj, user):
