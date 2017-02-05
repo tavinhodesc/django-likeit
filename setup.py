@@ -13,6 +13,7 @@ setup(
     description=README[2].rstrip('\n'),
     long_description=''.join(README),
     url='https://github.com/malisit/django-likeit',
+    download_url='https://github.com/malisit/django-likeit/tarball/0.1',
     author='Muhammed Ali Sit',
     author_email='sitmuhammedali@gmail.com',
     classifiers=[
