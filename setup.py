@@ -2,11 +2,15 @@
 
 from setuptools import setup, find_packages
 
-README = open('README.md').readlines()
+try:
+    import pypandoc
+    README = pypandoc.convert('README.md', 'rst')
+except(IOError, ImportError):
+    README = open('README.md').read()
 
 setup(
     name='django-likeit',
-    version='0.1.0',
+    version='0.1.2',
     packages=find_packages(),
     include_package_data=True,
     license='MIT License',
