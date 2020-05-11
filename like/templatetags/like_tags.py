@@ -61,7 +61,7 @@ def likes_count(obj):
     return Like.objects.for_object(obj).count()
 
 
-@register.assignment_tag
+@register.simple_tag
 def user_likes(user, app_model=None):
     """
     Usage:
@@ -86,7 +86,7 @@ def user_likes(user, app_model=None):
     return Like.objects.for_user(user, app_model)
 
 
-@register.assignment_tag
+@register.simple_tag
 def model_likes(app_model):
     """
     Gets all liked objects that are instances of a model
