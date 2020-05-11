@@ -1,6 +1,6 @@
 # django-likeit
 A simple app for Django that enables users to like and unlike any object/item within any model.
-It's developed on Python 3.5 & Python 3.6 for Django 1.10 and later.
+It's developed on Python 3.5 & Python 3.6 for Django 2.0 and later.
 
 ## Installation
 
