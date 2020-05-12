@@ -28,5 +28,9 @@ def add_or_remove(request):
         status = 'deleted'
 
     likeCount=Like.objects.for_object(obj_id, app_model).count()
+    if likeCount == 1:                                                                                       
+        sufixo = ' curtida'                                                                                  
+    else:                                                                                                    
+        sufixo = ' curtidas' 
     
-    return HttpResponse(status+"|"+str(likeCount))
+    return HttpResponse(status+"|"+str(likeCount)+sufixo)
