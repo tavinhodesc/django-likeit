@@ -8,7 +8,7 @@ from .models import Like
 def add_or_remove(request):
 
     if not request.is_ajax():
-        return HttpResponseNotAllowed()
+        return HttpResponseNotAllowed(['POST'])
 
     user = request.user
 
@@ -30,4 +30,3 @@ def add_or_remove(request):
     likeCount=Like.objects.for_object(obj_id, app_model).count()
     
     return HttpResponse(status+"|"+str(likeCount))
-
