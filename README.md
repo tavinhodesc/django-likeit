@@ -1,6 +1,6 @@
-# django-likeit
+# django-likeit-ptbr
 A simple app for Django that enables users to like and unlike any object/item within any model.
-It's developed on Python 3.5 & Python 3.6 for Django 2.0 and later.
+It's developed on Python 3.5 & Python 3.6 for Django 2.0 and later. Adjustments made from original django-likeit
 
 ## Installation
 
@@ -8,7 +8,7 @@ It's developed on Python 3.5 & Python 3.6 for Django 2.0 and later.
 * Install django-likeit in your vilrtual env:
 
 ```
-pip install django-likeit
+pip install django-likeit-ptbr
 ```
 
 * Add the app to your settings.py
